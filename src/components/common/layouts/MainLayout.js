@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import { Layout, Panel, AppBar } from 'react-toolbox/lib';
 import  MainAppBar from '../appbar/AppBar';
 import style from './style.css';
@@ -17,5 +17,9 @@ class MainLayout extends React.Component {
     );
   }
 }
+
+MainLayout.propTypes = {
+  children: PropTypes.object.isRequired
+};
 
 export default MainLayout;
