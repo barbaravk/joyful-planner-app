@@ -1,8 +1,8 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import TodoList from './TodoList'
+import style from './style.css';
 // import {Link} from 'react-router';
-// import style from './style.css';
 
 class TodoPage extends React.Component {
   constructor (props, context) {
@@ -12,10 +12,9 @@ class TodoPage extends React.Component {
   render() {
     const {todos} = this.props;
     return (
-      <div>
-        <h2>Test Todo Page</h2>
+      <div className={style.todo_list}>
+        <h3>Test Todo Page</h3>
         <TodoList todos={todos} />
-
       </div>
     );
   }

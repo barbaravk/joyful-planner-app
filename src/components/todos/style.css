@@ -1,0 +1,8 @@
+.todo_item {
+    border-top: solid 1px lightgray;
+}
+
+.todo_list {
+    margin: auto;
+    max-width: 740px;
+}

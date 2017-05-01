@@ -7,7 +7,7 @@ const TodoList = ({todos}) => {
     <List>
       <ListSubHeader caption="Todo List"/>
       {todos.map(item =>
-        <TodoItem item={item}/>
+        <TodoItem key={item.id + "_item"} item={item}/>
       )}
     </List>
   )

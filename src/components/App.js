@@ -1,12 +1,13 @@
 // This component handles the App template used on every page.
 import React, { PropTypes } from 'react';
 import MainLayout from './common/layouts/MainLayout';
+import theme from '../theme/theme.css'
 
 class App extends React.Component {
   render() {
     return (
       <div>
-        <MainLayout >
+        <MainLayout>
         {this.props.children}
         </MainLayout>
       </div>
