@@ -1,0 +1,6 @@
+.panel {
+  flex: 1;
+  overflowY: auto;
+  padding: 1.8rem
+}
+

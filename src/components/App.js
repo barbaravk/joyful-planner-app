@@ -1,18 +1,15 @@
 // This component handles the App template used on every page.
 import React, { PropTypes } from 'react';
-import TestButton from './common/button/TestButton';
-import MainAppBar from './common/appbar/AppBar';
-
-// import {connect} from 'react-redux';
+import MainLayout from './common/layouts/MainLayout';
 
 class App extends React.Component {
   render() {
     return (
-      <div className="testing_class">
-        <MainAppBar title="Main Appbar"/>
+      <div>
+        <MainLayout >
         {this.props.children}
+        </MainLayout>
       </div>
-
     );
   }
 }
