@@ -6,3 +6,7 @@
     margin: auto;
     max-width: 740px;
 }
+
+.todo_checkbox {
+    margin-bottom: 0;
+}
