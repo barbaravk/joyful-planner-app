@@ -63,7 +63,6 @@ class TodoApi {
         if (todo.title.length < minTodoTitleLength) {
           reject(`Title must be at least ${minTodoTitleLength} characters.`);
         }
-
         if (todo.id) {
           const existingTodoIndex = todos.findIndex(a => a.id == todo.id);
           todos.splice(existingTodoIndex, 1, todo);
@@ -75,6 +74,16 @@ class TodoApi {
           todos.push(todo);
         }
         resolve(todo);
+      }, delay);
+    });
+  }
+
+  static  deleteTodo(todoId) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        const deletedTodoIndex = todos.findIndex(todo => todo.id == todoId);
+        todos.splice(deletedTodoIndex, 1);
+        resolve(todoId);
       }, delay);
     });
   }

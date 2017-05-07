@@ -8,7 +8,7 @@ const MainAppBar = props => {
     <AppBar {...props} flat>
       <Navigation>
         <Link className={style.link} href='/' label="Home"/>
-        <Link className={style.link} href='/' label="Todo"/>
+        <Link className={style.link} href='/todo' label="Todo"/>
       </Navigation>
     </AppBar>
   );

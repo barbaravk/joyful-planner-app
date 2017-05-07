@@ -11,6 +11,7 @@ class TodoPage extends React.Component {
   constructor (props, context) {
     super(props, context);
     this.onChangeCheckbox = this.onChangeCheckbox.bind(this);
+    this.onDelete = this.onDelete.bind(this);
   }
 
   onChangeCheckbox(todo) {
@@ -19,12 +20,16 @@ class TodoPage extends React.Component {
     this.props.actions.saveTodo(newTodo);
   }
 
+  onDelete(todoId) {
+    this.props.actions.deleteTodo(todoId);
+  }
+
   render() {
     const {todos} = this.props;
     return (
       <div className={style.todo_list}>
         <h3>Test Todo Page</h3>
-        <TodoList todos={todos} onChangeCheckbox={this.onChangeCheckbox}/>
+        <TodoList todos={todos} onChangeCheckbox={this.onChangeCheckbox} onDelete={this.onDelete}/>
       </div>
     );
   }
