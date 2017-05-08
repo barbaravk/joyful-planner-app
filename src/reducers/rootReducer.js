@@ -1,8 +1,10 @@
-import {combineReducers} from 'redux';
-import todos from './todoReducer';
+import {combineReducers} from "redux";
+import todos from "./todoReducer";
+import ui from "./uiReducer";
 
 const rootReducer = combineReducers ({
-  todos
+  todos,
+  ui
 });
 
 export  default rootReducer;

@@ -4,7 +4,9 @@ import {Checkbox} from "react-toolbox/lib/checkbox";
 import TodoItemMenu from "./TodoItemMenu";
 import style from "./style.css";
 
-const TodoItem = ({item, onChangeCheckbox, onDelete}) => {
+const TodoItem = ({item, actions}) => {
+  const {onDelete, onChangeCheckbox} = actions;
+
   const menu = <TodoItemMenu key={item.key + "_menu"} onClick={() => onDelete(item.id)}/>;
   const checkbox = <Checkbox key={item.key + "_cb"} onChange={() => onChangeCheckbox(item)} checked={item.status == "closed"} className={style.todo_checkbox}/>;
 
@@ -21,7 +23,7 @@ const TodoItem = ({item, onChangeCheckbox, onDelete}) => {
 
 TodoItem.propTypes = {
   item: PropTypes.object.isRequired,
-  onChangeCheckbox: PropTypes.func.isRequired
+  actions: PropTypes.object.isRequired
 };
 
 

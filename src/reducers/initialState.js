@@ -1,3 +1,7 @@
 export default {
-    todos: []
+  todos: [],
+  ui: {
+    addTodoDialogActive: false,
+    editTodoDialogActive: false
+  }
 };
