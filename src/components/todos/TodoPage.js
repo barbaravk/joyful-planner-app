@@ -7,14 +7,13 @@ import TodoList from "./TodoList";
 import TodoAddItemDialog from "./TodoAddItemDialog";
 import style from "./style.css";
 
-// import {Link} from 'react-router';
-
 class TodoPage extends React.Component {
   constructor (props, context) {
     super(props, context);
 
     this.onChangeCheckbox = this.onChangeCheckbox.bind(this);
     this.onDelete = this.onDelete.bind(this);
+    this.onSave = this.onSave.bind(this);
     this.toggleAddTodoDialog = this.toggleAddTodoDialog.bind(this);
   }
 
@@ -28,6 +27,10 @@ class TodoPage extends React.Component {
     this.props.actions.deleteTodo(todoId);
   }
 
+  onSave(todo) {
+    console.log("save todo");
+  }
+
   toggleAddTodoDialog() {
     this.props.actions.toggleAddTodoDialog(this.props.ui.addTodoDialogActive);
   }
@@ -37,7 +40,8 @@ class TodoPage extends React.Component {
     const actions = {
       onChangeCheckbox: this.onChangeCheckbox,
       onDelete: this.onDelete,
-      toggleAddTodoDialog: this.toggleAddTodoDialog
+      toggleAddTodoDialog: this.toggleAddTodoDialog,
+      onSave: this.onSave
     };
 
     return (
