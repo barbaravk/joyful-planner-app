@@ -1,4 +1,5 @@
 import * as types from "./actionTypes";
+import * as uiActions from "./uiActions";
 import todoApi from "../server/api/mockTodoApi";
 
 export function loadTodosSuccess(todos) {
@@ -6,7 +7,11 @@ export function loadTodosSuccess(todos) {
 }
 
 export function createTodoSuccess(todo) {
-  return {type: types.CREATE_TODO_SUCCESS, todo};
+  return function (dispatch) {
+    dispatch(uiActions.toggleAddTodoDialog(true));
+    dispatch(uiActions.updateAddTodoDialogInput(""));
+    dispatch({type: types.CREATE_TODO_SUCCESS, todo});
+  };
 }
 
 export function updateTodoSuccess(todo) {

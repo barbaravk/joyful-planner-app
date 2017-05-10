@@ -5,5 +5,8 @@ export function toggleAddTodoDialog(active) {
 }
 
 export function updateAddTodoDialogInput(input) {
-  return {type: types.UPDATE_ADD_TODO_DIALOG_INPUT, input: input};
+  return function (dispatch) {
+    dispatch({type: types.EDIT_TODO_ERROR, error: ""});
+    dispatch({type: types.UPDATE_ADD_TODO_DIALOG_INPUT, input: input});
+  }
 }
