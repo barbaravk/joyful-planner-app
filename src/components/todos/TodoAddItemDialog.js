@@ -1,52 +1,79 @@
 import React, {PropTypes} from "react";
+import {connect} from "react-redux";
+import {bindActionCreators} from "redux";
+import * as todoActions from "../../actions/todoActions";
+import * as uiActions from "../../actions/uiActions";
 import {Dialog} from "react-toolbox/lib/dialog";
 import {Input} from "react-toolbox/lib/input";
 
 class TodoAddItemDialog extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      inputValue: ''
-    };
 
-    this.handleChange = this.handleChange.bind(this);
-    this.clearInput = this.clearInput.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.onClear = this.onClear.bind(this);
+    this.onSave = this.onSave.bind(this);
   }
 
-  handleChange(value) {
-    this.setState(Object.assign({}, this.state, {inputValue: value}));
+  onChange(value) {
+    this.props.actions.updateAddTodoDialogInput(value);
   }
 
-  clearInput() {
-    this.setState(Object.assign({}, this.state, {inputValue: ''}));
-    this.props.actions.toggleAddTodoDialog(true);
+  onClear() {
+    this.props.actions.updateAddTodoDialogInput("");
+    this.props.toggle(true);
+  }
+
+  onSave() {
+    const newTodo = Object.assign({},
+      {
+        type: "TD",
+        dateCreated: Date(),
+        dateModified: "",
+        dateClosed: "",
+        tags: [],
+        title: this.props.ui.dialogInput,
+        text: "",
+        status: "open",
+        subTasks: []
+      }
+    );
+    this.props.actions.saveTodo(newTodo);
   }
 
   render() {
-    const {
-      active,
-      actions: {
-        onSave, toggleAddTodoDialog
-      }
-    } = this.props;
+    const {toggle} = this.props;
     const dialogActions = [
-      {label: "Save", onClick: onSave},
-      {label: "Cancel", onClick: this.clearInput}
+      {label: "Save", onClick: this.onSave},
+      {label: "Cancel", onClick: this.onClear}
     ];
     return (
       <Dialog
-        active={active}
-        onOverlayClick={() => toggleAddTodoDialog(true)}
+        active={this.props.ui.addTodoDialogActive}
+        onOverlayClick={() => toggle(true)}
         actions={dialogActions}>
-        <Input type='text' multiline maxLength={160} rows={3} placeholder="Add a new todo item..." value={this.state.inputValue} onChange={this.handleChange}/>
+        <Input type='text' multiline maxLength={160} rows={3} error={this.props.ui.dialogError} placeholder="Add a new todo item..." value={this.props.ui.dialogInput} onChange={this.onChange}/>
       </Dialog>
     );
   }
 }
 
 TodoAddItemDialog.propTypes = {
-  active: PropTypes.bool.isRequired,
-  actions: PropTypes.object.isRequired
+  ui: PropTypes.object.isRequired,
+  actions: PropTypes.object.isRequired,
+  toggle: PropTypes.func.isRequired
 };
 
-export default TodoAddItemDialog;
+function mapStateToProps(state, ownProps) {
+  return {
+    ui: state.ui
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(Object.assign({}, todoActions, uiActions), dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoAddItemDialog);

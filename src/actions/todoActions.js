@@ -17,6 +17,10 @@ export function deleteTodoSuccess(todoId) {
   return {type: types.DELETE_TODO_SUCCESS, todoId};
 }
 
+export function editTodoError(error) {
+  return {type: types.EDIT_TODO_ERROR, error};
+}
+
 export function loadTodos() {
   return function(dispatch) {
     return todoApi.getAllTodos().then(todos => {
@@ -32,7 +36,7 @@ export function saveTodo(todo) {
     return todoApi.saveTodo(todo).then(savedTodo => {
       todo.id ? dispatch(updateTodoSuccess(savedTodo)) : dispatch(createTodoSuccess(savedTodo));
     }).catch(error => {
-      throw(error);
+      dispatch(editTodoError(error));
     });
   };
 }

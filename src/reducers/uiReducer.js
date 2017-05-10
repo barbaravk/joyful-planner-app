@@ -9,6 +9,12 @@ export default function todoReducer(state = initialState.ui, action) {
     case types.CLOSE_ADD_TODO_DIALOG:
       return Object.assign({}, state, {addTodoDialogActive: false});
 
+    case types.UPDATE_ADD_TODO_DIALOG_INPUT:
+      return Object.assign({}, state, {dialogInput: action.input});
+
+    case types.EDIT_TODO_ERROR:
+      return Object.assign({}, state, {dialogError: action.error});
+
     default:
       return state;
   }
