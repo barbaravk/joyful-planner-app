@@ -87,6 +87,18 @@ class TodoApi {
       }, delay);
     });
   }
+
+  static  deleteTodoTag(todoId, tag) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        const existingTodoIndex = todos.findIndex(todo => todo.id == todoId);
+        const newTags = todos[existingTodoIndex].tags.filter(t => t != tag);
+        const newTodo = Object.assign({}, todos[existingTodoIndex], {tags: newTags});
+        todos.splice(existingTodoIndex, 1, newTodo);
+        resolve(newTodo);
+      }, delay);
+    });
+  }
 }
 
 export default TodoApi;

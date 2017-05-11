@@ -55,3 +55,13 @@ export function deleteTodo(todoId) {
     });
   };
 }
+
+export function deleteTodoTag(todoId, tag) {
+  return function (dispatch, getState) {
+    return todoApi.deleteTodoTag(todoId, tag).then(updatedTodo => {
+      dispatch(updateTodoSuccess(updatedTodo));
+    }).catch(error => {
+      throw(error);
+    });
+  };
+}
