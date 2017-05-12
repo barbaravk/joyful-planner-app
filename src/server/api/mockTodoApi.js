@@ -7,7 +7,7 @@ const todos = [
     dateCreated: "02-08-2016",
     dateModified: "03-10-2016",
     dateClosed: "",
-    tags: ["photograpgy", "todo"],
+    tags: [1, 2],
     title: "Call photographer",
     text: "Call photographer tp discuss stuff...",
     status: "open",
@@ -32,11 +32,34 @@ const todos = [
     dateCreated: "01-06-2016",
     dateModified: "01-06-2016",
     dateClosed: "10-07-2016",
-    tags: ["fashion", "todo", "bridesmaids"],
+    tags: [1, 3, 4],
     title: "Organise bridesmaid dresses delivery",
     text: "",
     status: "closed",
     subTasks: []
+  }
+];
+
+const tags = [
+  {
+    id: 1,
+    text: "todo",
+    color: "blue"
+  },
+  {
+    id: 2,
+    text: "fashion",
+    color: "red"
+  },
+  {
+    id: 3,
+    text: "photography",
+    color: "yellow"
+  },
+  {
+    id: 4,
+    text: "bridesmaids",
+    color: "pink"
   }
 ];
 
@@ -49,6 +72,7 @@ class TodoApi {
   static getAllTodos() {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
+        todos.map(todo => todo.tags = tags.filter(tag => todo.tags.includes(tag.id)));
         resolve(Object.assign([], todos));
       }, delay);
     });
@@ -88,11 +112,11 @@ class TodoApi {
     });
   }
 
-  static  deleteTodoTag(todoId, tag) {
+  static  deleteTodoTag(todoId, tagId) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        const existingTodoIndex = todos.findIndex(todo => todo.id == todoId);
-        const newTags = todos[existingTodoIndex].tags.filter(t => t != tag);
+        const existingTodoIndex = todos.findIndex(td => td.id == todoId);
+        const newTags = todos[existingTodoIndex].tags.filter(t => t.id != tagId);
         const newTodo = Object.assign({}, todos[existingTodoIndex], {tags: newTags});
         todos.splice(existingTodoIndex, 1, newTodo);
         resolve(newTodo);

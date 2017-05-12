@@ -13,8 +13,8 @@ const TodoItem = ({item, actions}) => {
 
   const chips = (<div className={style.tag_container} key={item.key + "_tags"}>
     {item.tags.map(tag =>
-      <Chip key={item.key + tag.substr(0, 1)} deletable onDeleteClick={() => onDeleteTag(item.id, tag)}>
-        {tag}
+      <Chip key={item.key + tag.text.substr(0, 1)} deletable onDeleteClick={() => onDeleteTag(item.id, tag.id)}>
+        {tag.text}
       </Chip>)}
   </div>);
 

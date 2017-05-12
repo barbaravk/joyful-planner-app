@@ -56,9 +56,9 @@ export function deleteTodo(todoId) {
   };
 }
 
-export function deleteTodoTag(todoId, tag) {
+export function deleteTodoTag(todoId, tagId) {
   return function (dispatch, getState) {
-    return todoApi.deleteTodoTag(todoId, tag).then(updatedTodo => {
+    return todoApi.deleteTodoTag(todoId, tagId).then(updatedTodo => {
       dispatch(updateTodoSuccess(updatedTodo));
     }).catch(error => {
       throw(error);

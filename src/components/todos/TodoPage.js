@@ -27,8 +27,8 @@ class TodoPage extends React.Component {
     this.props.actions.deleteTodo(todoId);
   }
 
-  onDeleteTag(todoId, tag) {
-    this.props.actions.deleteTodoTag(todoId, tag);
+  onDeleteTag(todoId, tagId) {
+    this.props.actions.deleteTodoTag(todoId, tagId);
   }
 
   toggleAddTodoDialog() {

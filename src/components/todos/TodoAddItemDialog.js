@@ -52,7 +52,7 @@ class TodoAddItemDialog extends React.Component {
         active={this.props.ui.addTodoDialogActive}
         onOverlayClick={() => toggle(true)}
         actions={dialogActions}>
-        <Input type='text' multiline maxLength={160} rows={3} error={this.props.ui.dialogError} placeholder="Add a new todo item..." value={this.props.ui.dialogInput} onChange={this.onChange}/>
+        <Input type='text' multiline maxLength={160} error={this.props.ui.dialogError} placeholder="Add a new todo item..." value={this.props.ui.dialogInput} onChange={this.onChange}/>
       </Dialog>
     );
   }
